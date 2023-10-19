@@ -1,10 +1,11 @@
 from fastapi import FastAPI
 from fastapi import Request
 from fastapi.templating import Jinja2Templates
-from pydantic import BaseModel
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import StreamingResponse
 from fastapi.responses import HTMLResponse
+
+from pydantic import BaseModel
 
 templates = Jinja2Templates(directory="templates")
 
