@@ -9,7 +9,7 @@ from pydantic import BaseModel
 templates = Jinja2Templates(directory="templates")
 
 app = FastAPI()
-app.mount("/static", StaticFiles(directory="static"), name="static")
+app.mount("/static", StaticFiles(directory="statics"), name="static")
 
 @app.get("/")
 async def home(request: Request):
