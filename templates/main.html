@@ -4,11 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>main</title>
+    <link rel="stylesheet" href="{{ url_for ('static', path='/css_file_placeholder.css') }}" />
   </head>
   <body>
     <div id="container">
       <header>
-        <h2>브랜드명 또는 이미지 자리표시자</h2>
+        <img src="{{url_for ('static', path='/img_placeholder.png') }}" alt="logo_images" />
       </header>
 
       <footer>
