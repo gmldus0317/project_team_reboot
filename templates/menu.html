@@ -4,33 +4,77 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>menu</title>
-    <link rel="stylesheet" href="{{ url_for ('static', path='/css/bootstrap.min.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/bootstrap.min.css') }}" />
   </head>
   <body>
-    <div id="container">
-      <header>
-        <button type="button" class="btn btn-secondary" onclick="location.href='/'"><img src="{{ url_for('static', path='/home_btn.png') }}" alt="Home" class="w-25 h-auto" />처음으로</button>
-        <ul class="nav nav-pills justify-content-center">
-          <li class="nav-item">
-            <a href="#" class="nav-link active">커피</a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">티 & 에이드</a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">디저트</a>
-          </li>
-        </ul>
+    <div class="container">
+      <header class="mb-4">
+        <div class="d-flex justify-content-between">
+          <button type="button" class="btn btn-secondary" onclick="location.href='/'"><img src="{{ url_for('static', path='/home_btn.png') }}" alt="Home" class="w-25 h-auto" />처음으로</button>
+          <ul class="nav nav-pills">
+            <li class="nav-item">
+              <a href="#" class="nav-link active">커피</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">티 & 에이드</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">디저트</a>
+            </li>
+          </ul>
+          <div class="w-auto px-5"><!-- placeholder --></div>
+        </div>
       </header>
-
-      <footer>
-        <hr />
-        <p>주문수량</p>
-        <p>합계금액</p>
-        <div role="group" class="btn-group">
-          <button  type="button" class="btn btn-danger" onclick="location.href='#'">목록지우기</button>
-          <button  type="button" class="btn btn-info" onclick="location.href='#'">카드결제</button>
-          <button  type="button" class="btn btn-primary" onclick="location.href='#'">현금결제</button>
+      <div class="card-group">
+          <div class="card text-center" style="width: 18rem;">
+            <img src="{{ url_for('static', path='/coffee_placeholder.jpg') }}" alt="image_coffee" class="w-50 h-auto mx-auto" />
+            <div class="card-body">
+              <p class="card-text">나이트로 바닐라 크림</p>
+            </div>
+          </div>
+          <div class="card text-center" style="width: 18rem;">
+            <img src="{{ url_for('static', path='/coffee_placeholder.jpg') }}" alt="image_coffee" class="w-50 h-auto mx-auto" />
+            <div class="card-body">
+              <p class="card-text">나이트로 콜드 브루</p>
+            </div>
+          </div>
+          <div class="card text-center" style="width: 18rem;">
+            <img src="{{ url_for('static', path='/coffee_placeholder.jpg') }}" alt="image_coffee" class="w-50 h-auto mx-auto" />
+            <div class="card-body">
+              <p class="card-text">돌체 콜드 브루</p>
+            </div>
+          </div>
+        </div>
+        <div class="card-group">
+          <div class="card text-center" style="width: 18rem;">
+            <img src="{{ url_for('static', path='/coffee_placeholder.jpg') }}" alt="image_coffee" class="w-50 h-auto mx-auto" />
+            <div class="card-body">
+              <p class="card-text">리저브 콜드 브루</p>
+            </div>
+          </div>
+          <div class="card text-center" style="width: 18rem;">
+            <img src="{{ url_for('static', path='/coffee_placeholder.jpg') }}" alt="image_coffee" class="w-50 h-auto mx-auto" />
+            <div class="card-body">
+              <p class="card-text">민트 콜드 브루</p>
+            </div>
+          </div>
+          <div class="card text-center" style="width: 18rem;">
+            <img src="{{ url_for('static', path='/coffee_placeholder.jpg') }}" alt="image_coffee" class="w-50 h-auto mx-auto" />
+            <div class="card-body">
+              <p class="card-text">바닐라 크림 콜드 브루</p>
+            </div>
+          </div>
+      </div>
+      <footer class="mt-5">
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="mt-5 pt-5"><!-- placeholder --></div>
+          <p>주문수량</p>
+          <p>합계금액</p>
+          <div role="group" class="btn-group">
+            <button  type="button" class="btn btn-danger" onclick="location.href='#'">목록지우기</button>
+            <button  type="button" class="btn btn-info" onclick="location.href='#'">카드결제</button>
+            <button  type="button" class="btn btn-primary" onclick="location.href='#'">현금결제</button>
+          </div>
         </div>
       </footer>
     </div>

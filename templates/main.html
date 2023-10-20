@@ -4,17 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>main</title>
-    <link rel="stylesheet" href="{{ url_for ('static', path='/css/bootstrap.min.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/bootstrap.min.css') }}" />
   </head>
   <body>
-    <div id="container">
+    <div class="container">
       <header>
-        <img src="{{url_for ('static', path='/img_placeholder.png') }}" alt="logo_images" />
+        <div class="d-flex justify-content-start">
+          <img src="{{url_for('static', path='/starbucks_logo.png') }}" alt="logo_images" class="w-25 h-auto mx-auto" />
+        </div>
       </header>
 
       <footer>
-        <button type="button" class="btn btn-secondary" onclick="location.href='/menu'">매장</button>
-        <button type="button" class="btn btn-secondary" onclick="location.href='/menu'">포장</button>
+          <div class="fixed-bottom d-flex justify-content-center">
+            <button type="button" class="btn btn-secondary flex-fill" onclick="location.href='/menu'" style="font-size: 128px;">매장</button>
+            <button type="button" class="btn btn-secondary flex-fill" onclick="location.href='/menu'" style="font-size: 128px;">포장</button>
+          </div>
       </footer>
     </div>
     <script src="{{ url_for('static', path='/js/jquery-3.5.1.slim.min.js') }}"></script>
