@@ -4,12 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>menu</title>
-    <link rel="stylesheet" href="{{ url_for ('static', path='/css_file_placeholder.css') }}" />
+    <link rel="stylesheet" href="{{ url_for ('static', path='css/bootstrap.min.css') }}" />
   </head>
   <body>
     <div id="container">
       <header>
-        <button onclick="location.href='/'"><img src="{{ url_for('static', path='home_btn.png') }}" alt="Home" />처음으로</button>
+        <button type="button" class="btn btn-secondary" onclick="location.href='/'"><img src="{{ url_for('static', path='home_btn.png') }}" alt="Home" />처음으로</button>
         <ul>
           <li>커피</li>
           <li>티 & 에이드</li>
@@ -21,10 +21,12 @@
         <hr />
         <p>주문수량</p>
         <p>합계금액</p>
-        <button>목록지우기</button>
-        <button>카드결제</button>
-        <button>현금결제</button>
+        <button type="button" class="btn btn-danger">목록지우기</button>
+        <button type="button" class="btn btn-info">카드결제</button>
+        <button type="button" class="btn btn-primary">현금결제</button>
       </footer>
     </div>
+    <script src="{{ url_for('static', path='js/jquery-3.6.0.slim.min.js')}}"></script>
+    <script src="{{ url_for('static', path='js/bootstrap.bundle.min.js')}}"></script>
   </body>
 </html>

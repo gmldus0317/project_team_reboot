@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>main</title>
-    <link rel="stylesheet" href="{{ url_for ('static', path='/css_file_placeholder.css') }}" />
+    <link rel="stylesheet" href="{{ url_for ('static', path='css/bootstrap.min.css') }}" />
   </head>
   <body>
     <div id="container">
@@ -13,9 +13,11 @@
       </header>
 
       <footer>
-        <button onclick="location.href='/menu'">매장</button>
-        <button onclick="location.href='/menu'">포장</button>
+        <button type="button" class="btn btn-secondary" onclick="location.href='/menu'">매장</button>
+        <button type="button" class="btn btn-secondary" onclick="location.href='/menu'">포장</button>
       </footer>
     </div>
+    <script src="{{ url_for('static', path='js/jquery-3.6.0.slim.min.js') }}"></script>
+    <script src="{{ url_for('static', path='js/bootstrap.bundle.min.js') }}"></script>
   </body>
 </html>
