@@ -10,10 +10,16 @@
     <div id="container">
       <header>
         <button type="button" class="btn btn-secondary" onclick="location.href='/'"><img src="{{ url_for('static', path='home_btn.png') }}" alt="Home" />처음으로</button>
-        <ul>
-          <li>커피</li>
-          <li>티 & 에이드</li>
-          <li>디저트</li>
+        <ul class="nav nav-pills justify-content-center">
+          <li class="nav-item">
+            <a href="#" class="nav-link active">커피</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">티 & 에이드</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">디저트</a>
+          </li>
         </ul>
       </header>
 
