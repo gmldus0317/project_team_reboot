@@ -27,9 +27,11 @@
         <hr />
         <p>주문수량</p>
         <p>합계금액</p>
-        <button  type="button" class="btn btn-danger" onclick="location.href='#'">목록지우기</button>
-        <button  type="button" class="btn btn-info" onclick="location.href='#'">카드결제</button>
-        <button  type="button" class="btn btn-primary" onclick="location.href='#'">현금결제</button>
+        <div role="group" class="btn-group">
+          <button  type="button" class="btn btn-danger" onclick="location.href='#'">목록지우기</button>
+          <button  type="button" class="btn btn-info" onclick="location.href='#'">카드결제</button>
+          <button  type="button" class="btn btn-primary" onclick="location.href='#'">현금결제</button>
+        </div>
       </footer>
     </div>
     <script src="{{ url_for('static', path='js/jquery-3.5.1.slim.min.js')}}"></script>
