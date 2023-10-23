@@ -8,72 +8,166 @@
   </head>
   <body>
     <div class="container">
-      <header class="mb-4">
+      <header class="mb-4 pb-4">
         <div class="d-flex justify-content-between">
           <button type="button" class="btn btn-secondary" onclick="location.href='/'"><img src="{{ url_for('static', path='/home_btn.png') }}" alt="Home" class="w-25 h-auto" />처음으로</button>
-          <ul class="nav nav-pills">
+          <ul class="nav nav-pills" id="pills-tab" role="tablist">
             <li class="nav-item">
-              <a href="#" class="nav-link active">커피</a>
+              <a href="#" class="nav-link active" id="pills-coffee-tab" data-toggle="pill" data-target="#pills-coffee" role="tab" aria-controls="pills-coffee" aria-selected="true">커피</a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">티 & 에이드</a>
+              <a href="#" class="nav-link" id="pills-tea-tab" data-toggle="pill" data-target="#pills-tea" role="tab" aria-controls="pills-tea" aria-selected="false">티(티바나)</a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">디저트</a>
+              <a href="#" class="nav-link" id="pills-dessert-tab" data-toggle="pill" data-target="#pills-dessert" role="tab" aria-controls="pills-dessert" aria-selected="false">디저트</a>
             </li>
           </ul>
           <div class="w-auto px-5"><!-- placeholder --></div>
         </div>
       </header>
-      <div class="card-group">
-          <div class="card text-center" style="width: 18rem;">
-            <img src="{{ url_for('static', path='/coffee_placeholder.jpg') }}" alt="image_coffee" class="w-50 h-auto mx-auto" />
-            <div class="card-body">
-              <p class="card-text">나이트로 바닐라 크림</p>
+      <div class="tab-content" id="pills-tabContent">
+        <!-- 커피 탭 -->
+        <div class="tab-pane fade show active" id="pills-coffee" role="tabpannel" aria-labelledby="pills-coffee-tab">
+          <div class="card-group">
+            <div class="card text-center" style="width: 18rem;">
+              <img src="{{ url_for('static', path='/coffee_placeholder.jpg') }}" alt="image_coffee" class="w-50 h-auto mx-auto" />
+              <div class="card-body">
+                <p class="card-text">나이트로 바닐라 크림</p>
+              </div>
+            </div>
+            <div class="card text-center" style="width: 18rem;">
+              <img src="{{ url_for('static', path='/coffee_placeholder.jpg') }}" alt="image_coffee" class="w-50 h-auto mx-auto" />
+              <div class="card-body">
+                <p class="card-text">나이트로 콜드 브루</p>
+              </div>
+            </div>
+            <div class="card text-center" style="width: 18rem;">
+              <img src="{{ url_for('static', path='/coffee_placeholder.jpg') }}" alt="image_coffee" class="w-50 h-auto mx-auto" />
+              <div class="card-body">
+                <p class="card-text">돌체 콜드 브루</p>
+              </div>
             </div>
           </div>
-          <div class="card text-center" style="width: 18rem;">
-            <img src="{{ url_for('static', path='/coffee_placeholder.jpg') }}" alt="image_coffee" class="w-50 h-auto mx-auto" />
-            <div class="card-body">
-              <p class="card-text">나이트로 콜드 브루</p>
+          <div class="card-group">
+            <div class="card text-center" style="width: 18rem;">
+              <img src="{{ url_for('static', path='/coffee_placeholder.jpg') }}" alt="image_coffee" class="w-50 h-auto mx-auto" />
+              <div class="card-body">
+                <p class="card-text">리저브 콜드 브루</p>
+              </div>
             </div>
-          </div>
-          <div class="card text-center" style="width: 18rem;">
-            <img src="{{ url_for('static', path='/coffee_placeholder.jpg') }}" alt="image_coffee" class="w-50 h-auto mx-auto" />
-            <div class="card-body">
-              <p class="card-text">돌체 콜드 브루</p>
+            <div class="card text-center" style="width: 18rem;">
+              <img src="{{ url_for('static', path='/coffee_placeholder.jpg') }}" alt="image_coffee" class="w-50 h-auto mx-auto" />
+              <div class="card-body">
+                <p class="card-text">민트 콜드 브루</p>
+              </div>
+            </div>
+            <div class="card text-center" style="width: 18rem;">
+              <img src="{{ url_for('static', path='/coffee_placeholder.jpg') }}" alt="image_coffee" class="w-50 h-auto mx-auto" />
+              <div class="card-body">
+                <p class="card-text">바닐라 크림 콜드 브루</p>
+              </div>
             </div>
           </div>
         </div>
-        <div class="card-group">
-          <div class="card text-center" style="width: 18rem;">
-            <img src="{{ url_for('static', path='/coffee_placeholder.jpg') }}" alt="image_coffee" class="w-50 h-auto mx-auto" />
-            <div class="card-body">
-              <p class="card-text">리저브 콜드 브루</p>
+        <!-- 티(티바나) 탭 -->
+        <div class="tab-pane fade" id="pills-tea" role="tabpannel" aria-labelledby="pills-tea-tab">
+          <div class="card-group">
+            <div class="card text-center" style="width:18rem;">
+              <img src="{{ url_for('static', path='/tea_placeholder.jpg') }}" alt="image_tea" class="w-50 h-auto mx-auto" />
+              <div class="card-body">
+                <p class="class-text">제주팔삭 & 자몽 허니 블랙 티</p>
+              </div>
+            </div>
+            <div class="card text-center" style="width:18rem;">
+              <img src="{{ url_for('static', path='/tea_placeholder.jpg') }}" alt="image_tea" class="w-50 h-auto mx-auto" />
+              <div class="card-body">
+                <p class="class-text">스타벅스 클래식 밀크 티</p>
+              </div>
+            </div>
+            <div class="card text-center" style="width:18rem;">
+              <img src="{{ url_for('static', path='/tea_placeholder.jpg') }}" alt="image_tea" class="w-50 h-auto mx-auto" />
+              <div class="card-body">
+                <p class="class-text">민트 블렌드 티</p>
+              </div>
             </div>
           </div>
-          <div class="card text-center" style="width: 18rem;">
-            <img src="{{ url_for('static', path='/coffee_placeholder.jpg') }}" alt="image_coffee" class="w-50 h-auto mx-auto" />
-            <div class="card-body">
-              <p class="card-text">민트 콜드 브루</p>
+          <div class="card-group">
+            <div class="card text-center" style="width:18rem;">
+              <img src="{{ url_for('static', path='/tea_placeholder.jpg') }}" alt="image_tea" class="w-50 h-auto mx-auto" />
+              <div class="card-body">
+                <p class="class-text">얼 그레이 티</p>
+              </div>
+            </div>
+            <div class="card text-center" style="width:18rem;">
+              <img src="{{ url_for('static', path='/tea_placeholder.jpg') }}" alt="image_tea" class="w-50 h-auto mx-auto" />
+              <div class="card-body">
+                <p class="class-text">유스베리 티</p>
+              </div>
+            </div>
+            <div class="card text-center" style="width:18rem;">
+              <img src="{{ url_for('static', path='/tea_placeholder.jpg') }}" alt="image_tea" class="w-50 h-auto mx-auto" />
+              <div class="card-body">
+                <p class="class-text">유자 민트 티</p>
+              </div>
             </div>
           </div>
-          <div class="card text-center" style="width: 18rem;">
-            <img src="{{ url_for('static', path='/coffee_placeholder.jpg') }}" alt="image_coffee" class="w-50 h-auto mx-auto" />
-            <div class="card-body">
-              <p class="card-text">바닐라 크림 콜드 브루</p>
+        </div>
+        <!-- 디저트 탭 -->
+        <div class="tab-pane fade" id="pills-dessert" role="tabpannel" aria-labelledby="pills-dessert-tab">
+          <div class="card-group">
+            <div class="card text-center" style="width:18rem;">
+              <img src="{{ url_for('static', path='/dessert_placeholder.jpg') }}" alt="dessert" class="w-50 h-auto mx-auto" />
+              <div class="card-body">
+                <p class="class-text">클로버 파베 초콜릿</p>
+              </div>
+            </div>
+            <div class="card text-center" style="width:18rem;">
+              <img src="{{ url_for('static', path='/dessert_placeholder.jpg') }}" alt="dessert" class="w-50 h-auto mx-auto" />
+              <div class="card-body">
+                <p class="class-text">청크 초콜릿 틴 세트</p>
+              </div>
+            </div>
+            <div class="card text-center" style="width:18rem;">
+              <img src="{{ url_for('static', path='/dessert_placeholder.jpg') }}" alt="dessert" class="w-50 h-auto mx-auto" />
+              <div class="card-body">
+                <p class="class-text">미키 마들렌</p>
+              </div>
             </div>
           </div>
+          <div class="card-group">
+            <div class="card text-center" style="width:18rem;">
+              <img src="{{ url_for('static', path='/dessert_placeholder.jpg') }}" alt="dessert" class="w-50 h-auto mx-auto" />
+              <div class="card-body">
+                <p class="class-text">미키 마카롱</p>
+              </div>
+            </div>
+            <div class="card text-center" style="width:18rem;">
+              <img src="{{ url_for('static', path='/dessert_placeholder.jpg') }}" alt="dessert" class="w-50 h-auto mx-auto" />
+              <div class="card-body">
+                <p class="class-text">비스코티 크래커</p>
+              </div>
+            </div>
+            <div class="card text-center" style="width:18rem;">
+              <img src="{{ url_for('static', path='/dessert_placeholder.jpg') }}" alt="dessert" class="w-50 h-auto mx-auto" />
+              <div class="card-body">
+                <p class="class-text">칩 앤 데일 그래놀라 볼</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <footer class="mt-5">
+      <footer class="mt-5 pt-5">
         <div class="d-flex justify-content-between align-items-center">
-          <div class="mt-5 pt-5"><!-- placeholder --></div>
-          <p>주문수량</p>
-          <p>합계금액</p>
+          <div class="mx-5">
+            <p>주문수량</p>
+          </div>
+          <div class="mx-5">
+            <p>합계금액</p>
+          </div>
           <div role="group" class="btn-group">
-            <button  type="button" class="btn btn-danger" onclick="location.href='#'">목록지우기</button>
-            <button  type="button" class="btn btn-info" onclick="location.href='#'">카드결제</button>
-            <button  type="button" class="btn btn-primary" onclick="location.href='#'">현금결제</button>
+            <button  type="button" class="btn btn-danger mx-1 px-4" onclick="location.href='#'">목록지우기</button>
+            <button  type="button" class="btn btn-info mx-1 px-4" onclick="location.href='#'">카드결제</button>
+            <button  type="button" class="btn btn-primary mx-1 px-4" onclick="location.href='#'">현금결제</button>
           </div>
         </div>
       </footer>
