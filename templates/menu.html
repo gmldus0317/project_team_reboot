@@ -12,13 +12,13 @@
         <div class="d-flex justify-content-between">
           <button type="button" class="btn btn-secondary" onclick="location.href='/'"><img src="{{ url_for('static', path='/home_btn.png') }}" alt="Home" class="w-25 h-auto" />처음으로</button>
           <ul class="nav nav-pills" id="pills-tab" role="tablist">
-            <li class="nav-item">
+            <li class="nav-item" role="presentation">
               <a href="#" class="nav-link active" id="pills-coffee-tab" data-toggle="pill" data-target="#pills-coffee" role="tab" aria-controls="pills-coffee" aria-selected="true">커피</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" role="presentation">
               <a href="#" class="nav-link" id="pills-tea-tab" data-toggle="pill" data-target="#pills-tea" role="tab" aria-controls="pills-tea" aria-selected="false">티(티바나)</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" role="presentation">
               <a href="#" class="nav-link" id="pills-dessert-tab" data-toggle="pill" data-target="#pills-dessert" role="tab" aria-controls="pills-dessert" aria-selected="false">디저트</a>
             </li>
           </ul>
@@ -27,7 +27,7 @@
       </header>
       <div class="tab-content" id="pills-tabContent">
         <!-- 커피 탭 -->
-        <div class="tab-pane fade show active" id="pills-coffee" role="tabpannel" aria-labelledby="pills-coffee-tab">
+        <div class="tab-pane fade show active" id="pills-coffee" role="tabpanel" aria-labelledby="pills-coffee-tab">
           <div class="card-group">
             <div class="card text-center" style="width: 18rem;">
               <img src="{{ url_for('static', path='/coffee_placeholder_1.jpg') }}" alt="image_coffee" class="w-50 h-auto mx-auto" />
@@ -70,7 +70,7 @@
           </div>
         </div>
         <!-- 티(티바나) 탭 -->
-        <div class="tab-pane fade" id="pills-tea" role="tabpannel" aria-labelledby="pills-tea-tab">
+        <div class="tab-pane fade" id="pills-tea" role="tabpanel" aria-labelledby="pills-tea-tab">
           <div class="card-group">
             <div class="card text-center" style="width:18rem;">
               <img src="{{ url_for('static', path='/tea_placeholder.jpg') }}" alt="image_tea" class="w-50 h-auto mx-auto" />
@@ -113,7 +113,7 @@
           </div>
         </div>
         <!-- 디저트 탭 -->
-        <div class="tab-pane fade" id="pills-dessert" role="tabpannel" aria-labelledby="pills-dessert-tab">
+        <div class="tab-pane fade" id="pills-dessert" role="tabpanel" aria-labelledby="pills-dessert-tab">
           <div class="card-group">
             <div class="card text-center" style="width:18rem;">
               <img src="{{ url_for('static', path='/dessert_placeholder.jpg') }}" alt="dessert" class="w-50 h-auto mx-auto" />
