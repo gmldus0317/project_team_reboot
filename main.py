@@ -19,3 +19,7 @@ async def home(request: Request):
 @app.get("/menu")
 async def menu(request: Request):
     return templates.TemplateResponse("menu.html", {"request":request})
+
+@app.get("/info")
+async def info(request: Request):
+    return templates.TemplateResponse("notice.html", {"request":request})
