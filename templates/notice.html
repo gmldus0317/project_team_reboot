@@ -17,12 +17,12 @@
       <div class="d-flex justify-content-center align-item-center" style="font-size: 35px; color: darkorange;">
         해당 원두에는 아주 극소량의 발암물질이 들어있으나 식약처 인증기준에 적합한 수준이므로 음용하시는 데에는 전혀 문제가 없습니다. 그럼에도 불구하고 불안하신 고객님께서는 주문을 취소하여 주시면 감사하겠습니다.
       </div>
-      <div class="d-flex flex-row mb-5">
-        <img src="{{ url_for('static', path='/coffee_placeholder_1.jpg')}}" alt="placeholder" class="w-50 h-auto mx-5 mb-5" />
-        <div class="d-flex flex-column mt-5 pt-5 mx-auto px-auto">
-          <button type="button" class="btn btn-block btn-danger mt-5 px-5" style="font-size: 55px;" onclick="location.href='/menu'">계속 진행 ▷</button>
-          <button type="button" class="btn btn-block btn-primary mt-5 px-5" onclick="location.href='/menu'" style="font-size: 55px;">취소</button>
-        </div>
+      <div class="d-flex flex-row">
+        <img src="{{ url_for('static', path='/coffee_placeholder_1.jpg')}}" alt="placeholder" class="w-50 p-4 mx-auto" />
+      </div>
+      <div class="d-flex flex-column p-3">
+        <button type="button" class="btn btn-block btn-danger pb-2" style="font-size: 55px;" onclick="location.href='/menu'">계속 진행 ▷</button>
+        <button type="button" class="btn btn-block btn-primary pb-2" onclick="location.href='/menu'" style="font-size: 55px;">취소</button>
       </div>
       <footer>
        <!-- placeholder -->
