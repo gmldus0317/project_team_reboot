@@ -9,16 +9,36 @@
   <body>
     <div class="container px-0" style="background-color: #e6e6e6;">
       <header>
-        <div class="d-flex flex-row align-items-center mb-3" style="background-color: #ff914d;">
+        <div class="d-flex flex-row align-items-center  mb-3 p-2" style="background-color: #ff914d;">
           <img src="{{ url_for('static', path='/info_mark.png')}}" alt="Infomation" />
           <p class="mx-2 mb-1" style="font-size: 32px; color: #e24242;">경고</p>
         </div>
       </header>
       <div class="d-flex justify-content-center align-item-center" style="font-size: 35px; color: darkorange;">
-        해당 원두에는 아주 극소량의 발암물질이 들어있으나 식약처 인증기준에 적합한 수준이므로 음용하시는 데에는 전혀 문제가 없습니다. 그럼에도 불구하고 불안하신 고객님께서는 주문을 취소하여 주시면 감사하겠습니다.
+        <p class="p-2">
+          해당 원두에는 아주 극소량의 발암물질이 들어있으나 식약처 인증기준에 적합한 수준이므로 음용하시는 데에는 전혀 문제가 없습니다. 그럼에도 불구하고 불안하신 고객님께서는 주문을 취소하여 주시면 감사하겠습니다.
+        </p>
       </div>
       <div class="d-flex flex-row">
-        <img src="{{ url_for('static', path='/coffee_placeholder_1.jpg')}}" alt="placeholder" class="w-50 p-4 mx-auto" />
+        <img src="{{ url_for('static', path='/coffee_placeholder_1.jpg')}}" alt="placeholder" class="w-50 p-4" />
+        <table class="table table-dark m-4">
+          <tr>
+            <th scope="row">1회 제공량</th>
+            <th scope="row">당류 (g)</th>
+            <th scope="row">단백질 (g)</th>
+            <th scope="row">나트륨 (mg)</th>
+            <th scope="row">포화지방 (g)</th>
+            <th scope="row">카페인 (mg)</th>
+          </tr>
+          <tr>
+            <td>{{ crn_info.kcal_g }}</td>
+            <td>{{ crn_info.sacch_g }}</td>
+            <td>{{ crn_info.protein_g }}</td>
+            <td>{{ crn_info.sodium_mg }}</td>
+            <td>{{ crn_info.sat_fat_g }}</td>
+            <td>{{ crn_info.caffeine_mg }}</td>
+          </tr>
+        </table>
       </div>
       <div class="d-flex flex-column p-3">
         <button type="button" class="btn btn-block btn-danger pb-2" style="font-size: 55px;" onclick="location.href='/menu'">계속 진행 ▷</button>
