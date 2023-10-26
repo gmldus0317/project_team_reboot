@@ -8,7 +8,7 @@
   </head>
   <body>
     <div class="container" style="background-color: #e9e9e9;">
-      <header class="mb-4 pb-4">
+      <header class="mb-4 pt-3 pb-4">
         <div class="d-flex justify-content-between">
           <button type="button" class="btn btn-secondary" onclick="location.href='/'"><img src="{{ url_for('static', path='/home_btn.png') }}" alt="Home" class="w-25 h-auto" />처음으로</button>
           <ul class="nav nav-pills" id="pills-tab" role="tablist" style="background-color: white;">
@@ -308,9 +308,9 @@
       </div>
       <footer class="mt-5 pt-5">
         <div class="d-flex justify-content-between align-items-center">
-          <p class="mx-5">주문수량</p>
-          <p class="mx-5">합계금액</p>
-          <div role="group" class="btn-group">
+          <p class="mx-5 mb-4">주문수량</p>
+          <p class="mx-5 mb-4">합계금액</p>
+          <div role="group" class="btn-group pb-3">
             <button  type="button" class="btn btn-danger mx-1 px-4" onclick="location.href='#'">목록지우기</button>
             <button  type="button" class="btn btn-info mx-1 px-4" onclick="location.href='#'">카드결제</button>
             <button  type="button" class="btn btn-primary mx-1 px-4" onclick="location.href='#'">현금결제</button>
