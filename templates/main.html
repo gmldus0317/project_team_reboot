@@ -5,15 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>main</title>
     <link rel="stylesheet" href="{{ url_for('static', path='/css/bootstrap.min.css') }}" />
+    <style>
+      body {
+        background-image: url("{{ url_for('static', path='/bg.jpg') }}");
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+    </style>
   </head>
   <body>
     <div class="container">
-      <header>
-        <div class="d-flex justify-content-start">
-          <img src="{{url_for('static', path='/starbucks_logo.png') }}" alt="logo_images" class="w-25 h-auto mx-auto" />
-        </div>
-      </header>
-
       <footer>
           <div class="fixed-bottom d-flex justify-content-center">
             <button type="button" class="btn btn-secondary flex-fill" onclick="location.href='/menu'" style="font-size: 128px;">매장</button>
