@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="d-flex justify-content-center flex-column">
+        <form action="/add" method="post" class="m-3">
+            <div class="form-group">
+                <label for="menuname">메뉴명</label>
+                <input type="text" class="form-control" id="menu_name" aria-describedby="namehelp" name="menu_nm" />
+                <small id="namehelp" class="form-text text-muted">여기에 메뉴명 입력</small>
+            </div>
+            <div class="form-group">
+                <label for="kcal">1회 제공량(kcal)</label>
+                <input type="text" class="form-control" id="kcal_g" aria-describedby="kcalhelp" name="kcal_g"/>
+                <small id="kcalhelp" class="form-text text-muted">여기에 1회 제공량(kcal) 입력</small>
+            </div>
+            <div class="form-group">
+                <label for="sacchi">당류 함량(g)</label>
+                <input type="text" class="form-control" id="sacchi_g" aria-describedby="sacchhelp" name="sacch_g" />
+                <small id="sacchihelp" class="form-text text-muted">여기에 당류 함량(g) 입력</small>
+            </div>
+            <div class="form-group">
+                <label for="protein">단백질 함량(g)</label>
+                <input type="text" class="form-control" id="protein_g" aria-describedby="proteinhelp" name="protein_g" />
+                <small id="proteinhelp" class="form-text text-muted">여기에 단백질 함량(g) 입력</small>
+            </div>
+            <div class="form-group">
+                <label for="sodium">나트륨 함량(mg)</label>
+                <input type="text" class="form-control" id="sodium_mg" aria-describedby="sodiumhelp" name="sodium_mg" />
+                <small id="sodiumhelp" class="form-text text-muted">여기에 나트륨 함량(mg) 입력</small>
+            </div>
+            <div class="form-group">
+                <label for="sat_fat">포화지방(g)</label>
+                <input type="text" class="form-control" id="sat_fat_g" aria-describedby="sat_fathelp" name="sat_fat_g" />
+                <small id="sat_fathelp" class="form-text text-muted">여기에 포화지방 함량(g) 입력</small>
+            </div>
+            <div class="form-group">
+                <label for="caffeine">카페인(mg)</label>
+                <input type="text" class="form-control" id="caffeine_mg" aria-describedby="caffeinehelp" name="caffeine_mg" />
+                <small id="caffeinehelp" class="form-text text-muted">여기에 카페인 함량(mg) 입력</small>
+            </div>
+            <button type="submit" class="btn btn-primary">메뉴 추가</button>
+        </form>
+        <div class="flex-row">
+            <button class="btn btn-secondary m-3" onclick="location.href='/db'">뒤로가기</button>
+        </div>
+    </div>
+{% endblock content %}
