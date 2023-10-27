@@ -6,7 +6,7 @@ Base = declarative_base()
 class Menu(Base):
     __tablename__="menu"
 
-    menu_id = Column(Integer, primary_key=True, nullable=False)
+    menu_id = Column(Integer, primary_key=True)
     menu_nm = Column(String, nullable=False)
     kcal_g = Column(Integer, nullable=False)
     sacch_g = Column(Integer, nullable=False)
