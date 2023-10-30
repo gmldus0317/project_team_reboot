@@ -40,7 +40,7 @@ async def info(request: Request, menu_id: int, db: Session = Depends(get_db)):
 
 @app.get("/db")
 async def load_db(request: Request, db: Session = Depends(get_db)):
-    dt_info = db.query(Menu).order_by(Menu.menu_id.desc())
+    dt_info = db.query(Menu).order_by(Menu.menu_id)
     if dt_info.count() == 0:
         dt_info = 0
 
@@ -51,7 +51,7 @@ async def edit_menu(request: Request, menu_id: int, db: Session = Depends(get_db
     crt_menu = db.query(Menu).filter(Menu.menu_id == menu_id).first() #current_menu
     return templates.TemplateResponse("edit_menu.html", {"request": request, "crt_menu": crt_menu})
 
-@app.post("/edit{menu_id}")
+@app.post("/edit/{menu_id}")
 async def edit_menu(request: Request, menu_id: int, menu_nm: str = Form(...), kcal_g: int = Form(...), sacch_g: int = Form(...), protein_g: float = Form(...), sodium_mg: float = Form(...), sat_fat_g: int = Form(...), caffeine_mg: int = Form(...), db: Session = Depends(get_db)):
     menu = db.query(Menu).filter(Menu.menu_id == menu_id).first()
     menu.menu_nm = menu_nm
