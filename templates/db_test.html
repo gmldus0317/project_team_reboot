@@ -26,6 +26,7 @@
                         <th scope="row">나트륨 (mg)</th>
                         <th scope="row">포화지방 (g)</th>
                         <th scope="row">카페인 (mg)</th>
+                        <th scope="row">분류</th>
                       </tr>
                       {% for info in dt_info %}
                       <tr>
@@ -37,6 +38,7 @@
                         <td>{{ info.sodium_mg }}</td>
                         <td>{{ info.sat_fat_g }}</td>
                         <td>{{ info.caffeine_mg }}</td>
+                        <td>{{ info.category }}</td>
                       </tr>
                       {% endfor %}
                 </table>
