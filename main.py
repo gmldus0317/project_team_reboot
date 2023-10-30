@@ -38,9 +38,9 @@ async def info(request: Request, menu_id: int, db: Session = Depends(get_db)):
     dt_info = db.query(Menu).order_by(Menu.menu_id.desc())
     return templates.TemplateResponse("notice.html", {"request": request, "dt_info": dt_info, "crn_info": crn_info})
 
-@app.get("/db")
+@app.get("/admin")
 async def load_db(request: Request, db: Session = Depends(get_db)):
-    dt_info = db.query(Menu).order_by(Menu.menu_id)
+    dt_info = db.query(Menu).order_by(Menu.menu_id.desc())
     if dt_info.count() == 0:
         dt_info = 0
 
