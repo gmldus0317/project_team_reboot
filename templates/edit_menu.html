@@ -38,6 +38,17 @@
                 <input type="text" class="form-control" id="caffeine_mg" aria-describedby="caffeinehelp" value="{{ crt_menu.caffeine_mg }}" name="caffeine_mg" />
                 <small id="caffeinehelp" class="form-text text-muted">여기에 카페인 함량(mg) 입력</small>
             </div>
+            <div class="form-group">
+                <label for="category">분류</label>
+                <!-- <input type="select" class="form-control" id="category" aria-describedby="categoryhelp" name="category" /> -->
+                <select name="category" class="form-control" id="category" aria-describedby="categoryhelp">
+                    <option value="커피">커피</option>
+                    <option value="티">티</option>
+                    <option value="음료">음료</option>
+                    <option value="디저트">디저트</option>
+                </select>
+                <small id="categoryhelp" class="form-text text-muted">여기에 분류 입력</small>
+            </div>
             <button type="submit" class="btn btn-primary">메뉴 수정</button>
         </form>
         <div class="flex-row">
