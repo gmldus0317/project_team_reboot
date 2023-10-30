@@ -7,7 +7,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import RedirectResponse
 
 from database import *
-from models import Menu
+from models import *
 
 from sqlalchemy.orm import Session
 
@@ -53,7 +53,7 @@ async def edit_menu(request: Request, menu_id: int, db: Session = Depends(get_db
     return templates.TemplateResponse("edit_menu.html", {"request": request, "crt_menu": crt_menu})
 
 @app.post("/edit/{menu_id}")
-async def edit_menu(request: Request, menu_id: int, menu_nm: str = Form(...), kcal_g: int = Form(...), sacch_g: int = Form(...), protein_g: float = Form(...), sodium_mg: float = Form(...), sat_fat_g: int = Form(...), caffeine_mg: int = Form(...), db: Session = Depends(get_db)):
+async def edit_menu(request: Request, menu_id: int, menu_nm: str = Form(...), kcal_g: int = Form(...), sacch_g: int = Form(...), protein_g: float = Form(...), sodium_mg: float = Form(...), sat_fat_g: int = Form(...), caffeine_mg: int = Form(...), category: str = Form(...), db: Session = Depends(get_db)):
     menu = db.query(Menu).filter(Menu.menu_id == menu_id).first()
     menu.menu_nm = menu_nm
     menu.kcal_g = kcal_g
@@ -62,6 +62,7 @@ async def edit_menu(request: Request, menu_id: int, menu_nm: str = Form(...), kc
     menu.sodium_mg = sodium_mg
     menu.sat_fat_g = sat_fat_g
     menu.caffeine_mg = caffeine_mg
+    menu.category = category
     db.commit()
     return RedirectResponse(url=app.url_path_for("load_db"), status_code=status.HTTP_303_SEE_OTHER)
     
@@ -78,7 +79,7 @@ async def add_menu(request: Request):
     return templates.TemplateResponse("add_menu.html", {"request":request})
 
 @app.post("/add")
-async def add_menu(menu_nm: str = Form(...), kcal_g: int = Form(...), sacch_g: int = Form(...), protein_g: float = Form(...), sodium_mg: float = Form(...), sat_fat_g: int = Form(...), caffeine_mg: int = Form(...), db: Session = Depends(get_db)):
+async def add_menu(menu_nm: str = Form(...), kcal_g: int = Form(...), sacch_g: int = Form(...), protein_g: float = Form(...), sodium_mg: float = Form(...), sat_fat_g: int = Form(...), caffeine_mg: int = Form(...), category: str = Form(...), db: Session = Depends(get_db)):
     menu = Menu()
     menu.menu_nm = menu_nm
     menu.kcal_g = kcal_g
@@ -87,6 +88,7 @@ async def add_menu(menu_nm: str = Form(...), kcal_g: int = Form(...), sacch_g: i
     menu.sodium_mg = sodium_mg
     menu.sat_fat_g = sat_fat_g
     menu.caffeine_mg = caffeine_mg
+    menu.category = category
 
     db.add(menu)
     db.commit()
