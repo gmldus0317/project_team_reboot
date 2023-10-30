@@ -29,8 +29,9 @@ async def home(request: Request):
     return templates.TemplateResponse("main.html", {"request":request})
 
 @app.get("/menu")
-async def menu(request: Request):
-    return templates.TemplateResponse("menu.html", {"request":request})
+async def menu(request: Request, db: Session = Depends(get_db)):
+    dt_info = db.query(Menu).order_by(Menu.menu_id.desc())
+    return templates.TemplateResponse("menu.html", {"request":request, "dt_info": dt_info})
 
 @app.get("/info/{menu_id}")
 async def info(request: Request, menu_id: int, db: Session = Depends(get_db)):
