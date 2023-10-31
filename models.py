@@ -1,5 +1,7 @@
 from sqlalchemy import Column, Integer, Float, String
 from sqlalchemy.ext.declarative import declarative_base
+from pydantic import BaseModel
+from typing import List, Optional
 
 Base = declarative_base()
 
@@ -82,3 +84,6 @@ class MenuDessert(Base):
 
     def __repr__(self):
         return '<Info %r>' % (self.menu_id)
+
+class Cart_list(BaseModel):
+    name: str

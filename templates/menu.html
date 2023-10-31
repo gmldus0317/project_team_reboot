@@ -10,24 +10,26 @@
     <div class="container" style="background-color: #e9e9e9;">
 
       <header class="mb-4 pt-3 pb-4">
+        <!-- 페이지 상단 카테고리 -->
         <div class="d-flex justify-content-between">
           <button type="button" class="btn btn-secondary" onclick="location.href='/'"><img src="{{ url_for('static', path='/img/home_btn.png') }}" alt="Home" class="w-25 h-auto" />처음으로</button>
           <ul class="nav nav-pills" id="pills-tab" role="tablist" style="background-color: white;">
             <li class="nav-item" role="presentation">
-              <a href="#" class="nav-link active" id="pills-coffee-tab" data-toggle="pill" data-target="#pills-coffee" role="tab" aria-controls="pills-coffee" aria-selected="true">커피</a>
+              <a href="javascript:void(0)" class="nav-link active" id="pills-coffee-tab" data-toggle="pill" data-target="#pills-coffee" role="tab" aria-controls="pills-coffee" aria-selected="true">커피</a>
             </li>
             <li class="nav-item" role="presentation">
-              <a href="#" class="nav-link" id="pills-tea-tab" data-toggle="pill" data-target="#pills-tea" role="tab" aria-controls="pills-tea" aria-selected="false">차</a>
+              <a href="javascript:void(0)" class="nav-link" id="pills-tea-tab" data-toggle="pill" data-target="#pills-tea" role="tab" aria-controls="pills-tea" aria-selected="false">차</a>
             </li>
             <li class="nav-item" role="presentation">
-              <a href="#" class="nav-link" id="pills-drink-tab" data-toggle="pill" data-target="#pills-drink" role="tab" aria-controls="pills-drink" aria-selected="false">음료</a>
+              <a href="javascript:void(0)" class="nav-link" id="pills-drink-tab" data-toggle="pill" data-target="#pills-drink" role="tab" aria-controls="pills-drink" aria-selected="false">음료</a>
             </li>
             <li class="nav-item" role="presentation">
-              <a href="#" class="nav-link" id="pills-dessert-tab" data-toggle="pill" data-target="#pills-dessert" role="tab" aria-controls="pills-dessert" aria-selected="false">디저트</a>
+              <a href="javascript:void(0)" class="nav-link" id="pills-dessert-tab" data-toggle="pill" data-target="#pills-dessert" role="tab" aria-controls="pills-dessert" aria-selected="false">디저트</a>
             </li>
           </ul>
           <div class="w-auto px-5"><!-- placeholder --></div>
         </div>
+        <!-- 페이지 상단 카테고리 끝 -->
       </header>
 
       <!-- 메뉴 리스트 -->
@@ -115,15 +117,40 @@
 
       </div>
       <!-- 메뉴 리스트 끝 -->
-
+ 
       <footer class="mt-5 pt-5">
-        <div class="d-flex justify-content-between align-items-center">
-          <p class="mx-5 mb-4">주문수량</p>
-          <p class="mx-5 mb-4">합계금액</p>
-          <div role="group" class="btn-group pb-3">
-            <button  type="button" class="btn btn-danger mx-1 px-4" onclick="location.href='#'">목록지우기</button>
-            <button  type="button" class="btn btn-info mx-1 px-4" data-toggle="modal" data-target="#modalCard">카드결제</button>
-            <button  type="button" class="btn btn-primary mx-1 px-4" data-toggle="modal" data-target="#modalCredits">현금결제</button>
+        <div class="d-flex flex-row justify-content-between align-items-center" style="background-color: #e0e0e0;">
+          <table class="table">
+            <thead class="text-center">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">상품명</th>
+                <th scope="col">가격</th>
+              </tr>
+              {% for item in cart_list %}
+              <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ item }}</td>
+                <td><!-- placeholder --></td>
+              </tr>
+              {% endfor %}
+            </thead>
+          </table>
+          <table class="table table-borderless text-center">
+            <tr>
+              <td id="num-count" style="font-size: 32px; color: darkcyan;">{{ (cart_list|length) }}</td>
+              <td id="num-total" style="font-size: 32px; color: salmon;">0</td>
+            </tr>
+            <tr>
+              <th scope="col" style="font-size: 24px;">주문수량</th>
+              <th scope="col" style="font-size: 24px;">합계금액</th>
+            </tr>
+          </table>
+
+          <div role="group" class="btn-group flex-row ml-5 mr-2 my-4 pb-3">
+            <button type="button" class="btn btn-danger mx-1 px-4" id="list-clear" onclick="location.href='#num-count'">목록지우기</button>
+            <button type="button" class="btn btn-info mx-1 px-4" data-toggle="modal" data-target="#modalCard">카드결제</button>
+            <button type="button" class="btn btn-primary mx-1 px-4" data-toggle="modal" data-target="#modalCredits">현금결제</button>
           </div>
         </div>
       </footer>
@@ -140,7 +167,7 @@
               <p style="text-align: center; font-size: 32px;">카드를 투입구에 넣어주세요</p>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-block btn-secondary" data-dismiss="modal">취소</button>
             </div>
           </div>
         </div>
@@ -159,14 +186,36 @@
               <p style="text-align: center; font-size: 32px;">현금을 투입구에 넣어주세요</p>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-block btn-secondary" data-dismiss="modal">취소</button>
             </div>
           </div>
         </div>
       </div>
       <!-- 현금 결제 모달 끝 -->
 
-    </div>
+    </div> <!-- 컨테이너 div -->
+
+    <!-- 장바구니 리스트 제거 스크립트 -->
+    <script>
+      document.getElementById("list-clear").addEventListener("click", function () {
+        fetch('/cart/delete/', {
+          method: 'DELETE'
+        })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then(data => {
+          console.log(data);
+          window.location.reload();
+        }) 
+        .catch(error => console.error('Error:', error));
+      })
+    </script>
+    <!-- 장바구니 리스트 제거 스크립트 끝 -->
+    
     <script src="{{ url_for('static', path='/js/jquery-3.5.1.slim.min.js')}}"></script>
     <script src="{{ url_for('static', path='/js/bootstrap.bundle.min.js')}}"></script>
   </body>

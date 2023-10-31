@@ -32,12 +32,12 @@ async def load_db(request: Request, db: Session = Depends(get_db)):
 
     return templates.TemplateResponse("db_test.html", {"request":request, "dt_info":dt_info})
 
-@admin.get("/edit/{menu_id}", tags=['ncf'])
+@admin.get("/edit/{menu_id}", tags=['admin'])
 async def edit_menu(request: Request, menu_id: int, db: Session = Depends(get_db)):
     crt_menu = db.query(Menu).filter(Menu.menu_id == menu_id).first() #current_menu
     return templates.TemplateResponse("edit_menu.html", {"request": request, "crt_menu": crt_menu})
 
-@admin.post("/edit/{menu_id}", tags=['ncf'])
+@admin.post("/edit/{menu_id}", tags=['admin'])
 async def edit_menu(request: Request, menu_id: int, menu_nm: str = Form(...), kcal_g: int = Form(...), sacch_g: int = Form(...), protein_g: float = Form(...), sodium_mg: float = Form(...), sat_fat_g: int = Form(...), caffeine_mg: int = Form(...), category: str = Form(...), db: Session = Depends(get_db)):
     menu = db.query(Menu).filter(Menu.menu_id == menu_id).first()
     menu.menu_nm = menu_nm
@@ -52,18 +52,18 @@ async def edit_menu(request: Request, menu_id: int, menu_nm: str = Form(...), kc
     return RedirectResponse(url=admin.url_path_for("load_db"), status_code=status.HTTP_303_SEE_OTHER)
     
 
-@admin.get("/del/{menu_id}", tags=['ncf'])
+@admin.get("/del/{menu_id}", tags=['admin'])
 async def del_menu(request: Request, menu_id: int, db: Session = Depends(get_db)):
     crt_menu = db.query(Menu).filter(Menu.menu_id == menu_id).first()
     db.delete(crt_menu)
     db.commit()
     return RedirectResponse(url=admin.url_path_for("load_db"), status_code=status.HTTP_303_SEE_OTHER)
 
-@admin.get("/add", tags=['ncf'])
+@admin.get("/add", tags=['admin'])
 async def add_menu(request: Request):
     return templates.TemplateResponse("add_menu.html", {"request":request})
 
-@admin.post("/add", tags=['ncf'])
+@admin.post("/add", tags=['admin'])
 async def add_menu(menu_nm: str = Form(...), kcal_g: int = Form(...), sacch_g: int = Form(...), protein_g: float = Form(...), sodium_mg: float = Form(...), sat_fat_g: int = Form(...), caffeine_mg: int = Form(...), category: str = Form(...), db: Session = Depends(get_db)):
     menu = Menu()
     menu.menu_nm = menu_nm
