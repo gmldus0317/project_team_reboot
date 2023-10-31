@@ -2,7 +2,7 @@
 
 {% block content %}
     <div class="d-flex justify-content-center flex-column">
-        <form action="/edit/{{ crt_menu.menu_id }}" method="post" class="m-3">
+        <form action="/admin/edit/{{ crt_menu.menu_id }}" method="post" class="m-3">
             <div class="form-group">
                 <label for="menuname">메뉴명</label>
                 <input type="text" class="form-control" id="menu_nm" aria-describedby="namehelp" value="{{ crt_menu.menu_nm }}" name="menu_nm" />
@@ -40,20 +40,19 @@
             </div>
             <div class="form-group">
                 <label for="category">분류</label>
-                <!-- <input type="select" class="form-control" id="category" aria-describedby="categoryhelp" name="category" /> -->
                 <select name="category" class="form-control" id="category" aria-describedby="categoryhelp">
                     <option value="커피">커피</option>
                     <option value="티">티</option>
                     <option value="음료">음료</option>
                     <option value="디저트">디저트</option>
                 </select>
-                <small id="categoryhelp" class="form-text text-muted">여기에 분류 입력</small>
+                <small id="categoryhelp" class="form-text text-muted">메뉴 분류 선택</small>
             </div>
             <button type="submit" class="btn btn-primary">메뉴 수정</button>
         </form>
         <div class="flex-row">
             <button class="btn btn-secondary m-3" onclick="location.href='/admin'">뒤로가기</button>
-            <a href="/del/{{ crt_menu.menu_id }}"><button class="btn btn-danger">메뉴 삭제</button></a>
+            <a href="/admin/del/{{ crt_menu.menu_id }}"><button class="btn btn-danger">메뉴 삭제</button></a>
         </div>
     </div>
 {% endblock content %}

@@ -2,7 +2,7 @@
 
 {% block content %}
     <div class="d-flex justify-content-center flex-column">
-        <form action="/add" method="post" class="m-3">
+        <form action="/admin/add" method="post" class="m-3">
             <div class="form-group">
                 <label for="menuname">메뉴명</label>
                 <input type="text" class="form-control" id="menu_name" aria-describedby="namehelp" name="menu_nm" />
@@ -40,14 +40,13 @@
             </div>
             <div class="form-group">
                 <label for="category">분류</label>
-                <!-- <input type="select" class="form-control" id="category" aria-describedby="categoryhelp" name="category" /> -->
                 <select name="category" class="form-control" id="category" aria-describedby="categoryhelp">
                     <option value="커피">커피</option>
                     <option value="티">티</option>
                     <option value="음료">음료</option>
                     <option value="디저트">디저트</option>
                 </select>
-                <small id="categoryhelp" class="form-text text-muted">여기에 분류 입력</small>
+                <small id="categoryhelp" class="form-text text-muted">메뉴 분류 선택</small>
             </div>
             <button type="submit" class="btn btn-primary">메뉴 추가</button>
         </form>
