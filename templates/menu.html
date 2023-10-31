@@ -11,7 +11,7 @@
 
       <header class="mb-4 pt-3 pb-4">
         <div class="d-flex justify-content-between">
-          <button type="button" class="btn btn-secondary" onclick="location.href='/'"><img src="{{ url_for('static', path='/home_btn.png') }}" alt="Home" class="w-25 h-auto" />처음으로</button>
+          <button type="button" class="btn btn-secondary" onclick="location.href='/'"><img src="{{ url_for('static', path='/img/home_btn.png') }}" alt="Home" class="w-25 h-auto" />처음으로</button>
           <ul class="nav nav-pills" id="pills-tab" role="tablist" style="background-color: white;">
             <li class="nav-item" role="presentation">
               <a href="#" class="nav-link active" id="pills-coffee-tab" data-toggle="pill" data-target="#pills-coffee" role="tab" aria-controls="pills-coffee" aria-selected="true">커피</a>
@@ -35,388 +35,80 @@
 
         <!-- 커피 탭 -->
         <div class="tab-pane fade show active" id="pills-coffee" role="tabpanel" aria-labelledby="pills-coffee-tab">
-          <div class="card-group">
-            <div class="card text-center" style="width: 18rem;">
-              <img src="{{ url_for('static', path='/coffee_placeholder_1.jpg') }}" alt="image_coffee" class="w-50 h-auto mx-auto" />
-              <div class="card-body px-5">
-                <p class="card-text">나이트로 바닐라 크림</p>
-                <button type="button" class="btn btn-block btn-danger" onclick="location.href='/info/1'">주문하기</button>
+          <div class="row row-cols-md-4 px-5">
+            {% for coffee in dt_coffee %}
+              <div class="card text-center" style="width: 18rem;">
+                <img src="{{ url_for('static', path='/img/coffee_placeholder_1.jpg') }}" alt="image_coffee" class="w-75 h-auto m-auto" />
+                <div class="card-body px-5">
+                  {% if (coffee.menu_nm|length) >= 13 %}
+                    <p class="card-text" style="font-size: 14px;">{{ coffee.menu_nm }}</p>
+                  {% else %}
+                  <p class="card-text">{{ coffee.menu_nm }}</p>
+                  {% endif %}
+                  <a href="/info/{{ coffee.menu_id }}" class="btn btn-block btn-danger">주문하기</a>
+                </div>
               </div>
-            </div>
-            <div class="card text-center" style="width: 18rem;">
-              <img src="{{ url_for('static', path='/coffee_placeholder_1.jpg') }}" alt="image_coffee" class="w-50 h-auto mx-auto" />
-              <div class="card-body px-5">
-                <p class="card-text">나이트로 콜드 브루</p>
-                <button type="button" class="btn btn-block btn-danger" onclick="location.href='/info/2'">주문하기</button>
-              </div>
-            </div>
-            <div class="card text-center" style="width: 18rem;">
-              <img src="{{ url_for('static', path='/coffee_placeholder_1.jpg') }}" alt="image_coffee" class="w-50 h-auto mx-auto" />
-              <div class="card-body px-5">
-                <p class="card-text">돌체 콜드 브루</p>
-                <button type="button" class="btn btn-block btn-danger" onclick="location.href='/info/3'">주문하기</button>
-              </div>
-            </div>
-            <div class="card text-center" style="width: 18rem;">
-              <img src="{{ url_for('static', path='/coffee_placeholder_1.jpg') }}" alt="image_coffee" class="w-50 h-auto mx-auto" />
-              <div class="card-body px-5">
-                <p class="card-text">리저브 나이트로</p>
-                <button type="button" class="btn btn-block btn-danger" onclick="location.href='/info/4'">주문하기</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="card-group">
-            <div class="card text-center" style="width: 18rem;">
-              <img src="{{ url_for('static', path='/coffee_placeholder_1.jpg') }}" alt="image_coffee" class="w-50 h-auto mx-auto" />
-              <div class="card-body px-5">
-                <p class="card-text">리저브 콜드 브루</p>
-                <button type="button" class="btn btn-block btn-danger" onclick="location.href='/info/5'">주문하기</button>
-              </div>
-            </div>
-            <div class="card text-center" style="width: 18rem;">
-              <img src="{{ url_for('static', path='/coffee_placeholder_1.jpg') }}" alt="image_coffee" class="w-50 h-auto mx-auto" />
-              <div class="card-body px-5">
-                <p class="card-text">민트 콜드 브루</p>
-                <button type="button" class="btn btn-block btn-danger" onclick="location.href='/info/6'">주문하기</button>
-              </div>
-            </div>
-            <div class="card text-center" style="width: 18rem;">
-              <img src="{{ url_for('static', path='/coffee_placeholder_1.jpg') }}" alt="image_coffee" class="w-50 h-auto mx-auto" />
-              <div class="card-body px-5">
-                <p class="card-text">오트 콜드 브루</p>
-                <button type="button" class="btn btn-block btn-danger" onclick="location.href='/info/10'">주문하기</button>
-              </div>
-            </div>
-            <div class="card text-center" style="width: 18rem;">
-              <img src="{{ url_for('static', path='/coffee_placeholder_1.jpg') }}" alt="image_coffee" class="w-50 h-auto mx-auto" />
-              <div class="card-body px-5">
-                <p class="card-text">제주 비자림 콜드 브루</p>
-                <button type="button" class="btn btn-block btn-danger" onclick="location.href='/info/11'">주문하기</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="card-group">
-            <div class="card text-center" style="width: 18rem;">
-              <img src="{{ url_for('static', path='/coffee_placeholder_1.jpg') }}" alt="image_coffee" class="w-50 h-auto mx-auto" />
-              <div class="card-body px-5">
-                <p class="card-text">콜드 브루 몰트</p>
-                <button type="button" class="btn btn-block btn-danger" onclick="location.href='/info/14'">주문하기</button>
-              </div>
-            </div>
-            <div class="card text-center" style="width: 18rem;">
-              <img src="{{ url_for('static', path='/coffee_placeholder_1.jpg') }}" alt="image_coffee" class="w-50 h-auto mx-auto" />
-              <div class="card-body px-5">
-                <p class="card-text">콜드 브루 플로트</p>
-                <button type="button" class="btn btn-block btn-danger" onclick="location.href='/info/15'">주문하기</button>
-              </div>
-            </div>
-            <div class="card text-center" style="width: 18rem;">
-              <img src="{{ url_for('static', path='/coffee_placeholder_1.jpg') }}" alt="image_coffee" class="w-50 h-auto mx-auto" />
-              <div class="card-body px-5">
-                <p class="card-text">마롱 헤이즐넛 라떼</p>
-                <button type="button" class="btn btn-block btn-danger" onclick="location.href='/info/18'">주문하기</button>
-              </div>
-            </div>
-            <div class="card text-center" style="width: 18rem;">
-              <img src="{{ url_for('static', path='/coffee_placeholder_1.jpg') }}" alt="image_coffee" class="w-50 h-auto mx-auto" />
-              <div class="card-body px-5">
-                <p class="card-text">블랙 글레이즈드 라떼</p>
-                <button type="button" class="btn btn-block btn-danger" onclick="location.href='/info/20'">주문하기</button>
-              </div>
-            </div>
+            {% endfor %}
           </div>
         </div>
         <!-- 커피 탭 끝 -->
 
         <!-- 차 탭 -->
         <div class="tab-pane fade" id="pills-tea" role="tabpanel" aria-labelledby="pills-tea-tab">
-          <div class="card-group">
-            <div class="card text-center" style="width:18rem;">
-              <img src="{{ url_for('static', path='/tea_placeholder.jpg') }}" alt="image_tea" class="w-50 h-auto mx-auto" />
+          <div class="row row-cols-md-4 px-5">
+            {% for tea in dt_tea %}
+            <div class="card text-center" style="width: 18rem;">
+              <img src="{{ url_for('static', path='/img/tea_placeholder.jpg') }}" alt="image_tea" class="w-75 h-auto mx-auto" />
               <div class="card-body px-5">
-                <p class="class-text">말차 티 슈페너</p>
-                <button type="button" class="btn btn-block btn-danger" onclick="location.href='/info/119'">주문하기</button>
+                {% if (tea.menu_nm|length) >= 13 %}
+                  <p class="card-text" style="font-size: 14px;">{{ tea.menu_nm }}</p>
+                {% else %}
+                  <p class="card-text">{{ tea.menu_nm }}</p>
+                {% endif %}
+                <a href="/info/{{ tea.menu_id }}" class="btn btn-block btn-danger">주문하기</a>
               </div>
             </div>
-            <div class="card text-center" style="width:18rem;">
-              <img src="{{ url_for('static', path='/tea_placeholder.jpg') }}" alt="image_tea" class="w-50 h-auto mx-auto" />
-              <div class="card-body px-5">
-                <p class="class-text">스타벅스 클래식 밀크 티</p>
-                <button type="button" class="btn btn-block btn-danger" onclick="location.href='/info/95'">주문하기</button>
-              </div>
-            </div>
-            <div class="card text-center" style="width:18rem;">
-              <img src="{{ url_for('static', path='/tea_placeholder.jpg') }}" alt="image_tea" class="w-50 h-auto mx-auto" />
-              <div class="card-body px-5">
-                <p class="class-text">민트 블렌드 티</p>
-                <button type="button" class="btn btn-block btn-danger" onclick="location.href='/info/98'">주문하기</button>
-              </div>
-            </div>
-            <div class="card text-center" style="width:18rem;">
-              <img src="{{ url_for('static', path='/tea_placeholder.jpg') }}" alt="image_tea" class="w-50 h-auto mx-auto" />
-              <div class="card-body px-5">
-                <p class="class-text">자몽 허니 블랙 티</p>
-                <button type="button" class="btn btn-block btn-danger" onclick="location.href='/info/111'">주문하기</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="card-group">
-            <div class="card text-center" style="width:18rem;">
-              <img src="{{ url_for('static', path='/tea_placeholder.jpg') }}" alt="image_tea" class="w-50 h-auto mx-auto" />
-              <div class="card-body px-5">
-                <p class="class-text">얼 그레이 티</p>
-                <button type="button" class="btn btn-block btn-danger" onclick="location.href='/info/107'">주문하기</button>
-              </div>
-            </div>
-            <div class="card text-center" style="width:18rem;">
-              <img src="{{ url_for('static', path='/tea_placeholder.jpg') }}" alt="image_tea" class="w-50 h-auto mx-auto" />
-              <div class="card-body px-5">
-                <p class="class-text">유스베리 티</p>
-                <button type="button" class="btn btn-block btn-danger" onclick="location.href='/info/108'">주문하기</button>
-              </div>
-            </div>
-            <div class="card text-center" style="width:18rem;">
-              <img src="{{ url_for('static', path='/tea_placeholder.jpg') }}" alt="image_tea" class="w-50 h-auto mx-auto" />
-              <div class="card-body px-5">
-                <p class="class-text">유자 민트 티</p>
-                <button type="button" class="btn btn-block btn-danger" onclick="location.href='/info/109'">주문하기</button>
-              </div>
-            </div>
-            <div class="card text-center" style="width:18rem;">
-              <img src="{{ url_for('static', path='/tea_placeholder.jpg') }}" alt="image_tea" class="w-50 h-auto mx-auto" />
-              <div class="card-body px-5">
-                <p class="class-text">제주 유기 녹차</p>
-                <button type="button" class="btn btn-block btn-danger" onclick="location.href='/info/112'">주문하기</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="card-group">
-            <div class="card text-center" style="width:18rem;">
-              <img src="{{ url_for('static', path='/tea_placeholder.jpg') }}" alt="image_tea" class="w-50 h-auto mx-auto" />
-              <div class="card-body px-5">
-                <p class="class-text">캐모마일 블렌드 티</p>
-                <button type="button" class="btn btn-block btn-danger" onclick="location.href='/info/113'">주문하기</button>
-              </div>
-            </div>
-            <div class="card text-center" style="width:18rem;">
-              <img src="{{ url_for('static', path='/tea_placeholder.jpg') }}" alt="image_tea" class="w-50 h-auto mx-auto" />
-              <div class="card-body px-5">
-                <p class="class-text">히비스커스 블렌드 티</p>
-                <button type="button" class="btn btn-block btn-danger" onclick="location.href='/info/114'">주문하기</button>
-              </div>
-            </div>
-            <div class="card text-center" style="width:18rem;">
-              <img src="{{ url_for('static', path='/tea_placeholder.jpg') }}" alt="image_tea" class="w-50 h-auto mx-auto" />
-              <div class="card-body px-5">
-                <p class="class-text">레드 파워 패션 티</p>
-                <button type="button" class="btn btn-block btn-danger" onclick="location.href='/info/115'">주문하기</button>
-              </div>
-            </div>
-            <div class="card text-center" style="width:18rem;">
-              <img src="{{ url_for('static', path='/tea_placeholder.jpg') }}" alt="image_tea" class="w-50 h-auto mx-auto" />
-              <div class="card-body px-5">
-                <p class="class-text">돌체 블랙 밀크 티</p>
-                <button type="button" class="btn btn-block btn-danger" onclick="location.href='/info/118'">주문하기</button>
-              </div>
-            </div>
+            {% endfor %}
           </div>
         </div>
         <!-- 차 탭 끝 -->
 
         <!-- 음료 탭 -->
-        <div class="tab-pane fade" id="pills-drink" role="tabpanel" aria-labelledby="pills-drink-tab">
-          <div class="card-group">
-            <div class="card text-center" style="width:18rem;">
-              <img src="{{ url_for('static', path='/drink_placeholder.jpg') }}" alt="image_tea" class="w-50 h-auto mx-auto" />
+        <div class="tab-pane fade" id="pills-drink" role="tabpanel" aria-labelledby="pills-tea-tab">
+          <div class="row row-cols-md-4 px-5">
+            {% for drink in dt_drink %}
+            <div class="card text-center" style="width: 18rem;">
+              <img src="{{ url_for('static', path='/img/drink_placeholder.jpg') }}" alt="image_drink" class="w-75 h-auto mx-auto" />
               <div class="card-body px-5">
-                <p class="class-text">딸기 콜드폼 초콜릿</p>
-                <button type="button" class="btn btn-block btn-danger" onclick="location.href='/info/128'">주문하기</button>
+                {% if (drink.menu_nm|length) >= 13 %}
+                  <p class="card-text" style="font-size: 14px;">{{ drink.menu_nm }}</p>
+                {% else %}
+                  <p class="card-text">{{ drink.menu_nm }}</p>
+                {% endif %}
+                <a href="/info/{{ drink.menu_id }}" class="btn btn-block btn-danger">주문하기</a>
               </div>
             </div>
-            <div class="card text-center" style="width:18rem;">
-              <img src="{{ url_for('static', path='/drink_placeholder.jpg') }}" alt="image_tea" class="w-50 h-auto mx-auto" />
-              <div class="card-body px-5">
-                <p class="class-text">딸기 콜드폼 딸기 라떼</p>
-                <button type="button" class="btn btn-block btn-danger" onclick="location.href='/info/129'">주문하기</button>
-              </div>
-            </div>
-            <div class="card text-center" style="width:18rem;">
-              <img src="{{ url_for('static', path='/drink_placeholder.jpg') }}" alt="image_tea" class="w-50 h-auto mx-auto" />
-              <div class="card-body px-5">
-                <p class="class-text">제주팔삭 셔벗</p>
-                <button type="button" class="btn btn-block btn-danger" onclick="location.href='/info/130'">주문하기</button>
-              </div>
-            </div>
-            <div class="card text-center" style="width:18rem;">
-              <img src="{{ url_for('static', path='/drink_placeholder.jpg') }}" alt="image_tea" class="w-50 h-auto mx-auto" />
-              <div class="card-body px-5">
-                <p class="class-text">시그니처 핫 초콜릿</p>
-                <button type="button" class="btn btn-block btn-danger" onclick="location.href='/info/131'">주문하기</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="card-group">
-            <div class="card text-center" style="width:18rem;">
-              <img src="{{ url_for('static', path='/drink_placeholder.jpg') }}" alt="image_tea" class="w-50 h-auto mx-auto" />
-              <div class="card-body px-5">
-                <p class="class-text">아이스 시그니처 초콜릿</p>
-                <button type="button" class="btn btn-block btn-danger" onclick="location.href='/info/132'">주문하기</button>
-              </div>
-            </div>
-            <div class="card text-center" style="width:18rem;">
-              <img src="{{ url_for('static', path='/drink_placeholder.jpg') }}" alt="image_tea" class="w-50 h-auto mx-auto" />
-              <div class="card-body px-5">
-                <p class="class-text" style="font-size: 15px;">플러피 판다 아이스 초콜릿</p>
-                <button type="button" class="btn btn-block btn-danger" onclick="location.href='/info/133'">주문하기</button>
-              </div>
-            </div>
-            <div class="card text-center" style="width:18rem;">
-              <img src="{{ url_for('static', path='/drink_placeholder.jpg') }}" alt="image_tea" class="w-50 h-auto mx-auto" />
-              <div class="card-body px-5">
-                <p class="class-text">플러피 판다 핫 초콜릿</p>
-                <button type="button" class="btn btn-block btn-danger" onclick="location.href='/info/134'">주문하기</button>
-              </div>
-            </div>
-            <div class="card text-center" style="width:18rem;">
-              <img src="{{ url_for('static', path='/drink_placeholder.jpg') }}" alt="image_tea" class="w-50 h-auto mx-auto" />
-              <div class="card-body px-5">
-                <p class="class-text">스타벅스 슬래머</p>
-                <button type="button" class="btn btn-block btn-danger" onclick="location.href='/info/135'">주문하기</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="card-group">
-            <div class="card text-center" style="width:18rem;">
-              <img src="{{ url_for('static', path='/drink_placeholder.jpg') }}" alt="image_tea" class="w-50 h-auto mx-auto" />
-              <div class="card-body px-5">
-                <p class="class-text">스팀 우유</p>
-                <button type="button" class="btn btn-block btn-danger" onclick="location.href='/info/136'">주문하기</button>
-              </div>
-            </div>
-            <div class="card text-center" style="width:18rem;">
-              <img src="{{ url_for('static', path='/drink_placeholder.jpg') }}" alt="image_tea" class="w-50 h-auto mx-auto" />
-              <div class="card-body px-5">
-                <p class="class-text">아이스 제주 까망 라떼</p>
-                <button type="button" class="btn btn-block btn-danger" onclick="location.href='/info/137'">주문하기</button>
-              </div>
-            </div>
-            <div class="card text-center" style="width:18rem;">
-              <img src="{{ url_for('static', path='/drink_placeholder.jpg') }}" alt="image_tea" class="w-50 h-auto mx-auto" />
-              <div class="card-body px-5">
-                <p class="class-text">우유</p>
-                <button type="button" class="btn btn-block btn-danger" onclick="location.href='/info/138'">주문하기</button>
-              </div>
-            </div>
-            <div class="card text-center" style="width:18rem;">
-              <img src="{{ url_for('static', path='/drink_placeholder.jpg') }}" alt="image_tea" class="w-50 h-auto mx-auto" />
-              <div class="card-body px-5">
-                <p class="class-text">제주 까망 라떼</p>
-                <button type="button" class="btn btn-block btn-danger" onclick="location.href='/info/139'">주문하기</button>
-              </div>
-            </div>
+            {% endfor %}
           </div>
         </div>
         <!-- 음료 탭 끝 -->
 
         <!-- 디저트 탭 -->
         <div class="tab-pane fade" id="pills-dessert" role="tabpanel" aria-labelledby="pills-dessert-tab">
-          <div class="card-group">
-            <div class="card text-center" style="width:18rem;">
-              <img src="{{ url_for('static', path='/dessert_placeholder.jpg') }}" alt="dessert" class="w-50 h-auto mx-auto" />
+          <div class="row row-cols-md-4 px-5">
+            {% for dessert in dt_dessert %}
+            <div class="card text-center" style="width: 18rem;">
+              <img src="{{ url_for('static', path='/img/dessert_placeholder.jpg') }}" alt="dessert" class="w-75 h-auto mx-auto" />
               <div class="card-body px-5">
-                <p class="class-text">클로버 파베 초콜릿</p>
-                <button type="button" class="btn btn-block btn-danger" onclick="location.href='/info/189'">주문하기</button>
+                {% if (dessert.menu_nm|length) >= 13 %}
+                  <p class="card-text" style="font-size: 14px;">{{ dessert.menu_nm }}</p>
+                {% else %}
+                  <p class="card-text">{{ dessert.menu_nm }}</p>
+                {% endif %}
+                <a href="/info/{{ dessert.menu_id }}" class="btn btn-block btn-danger">주문하기</a>
               </div>
             </div>
-            <div class="card text-center" style="width:18rem;">
-              <img src="{{ url_for('static', path='/dessert_placeholder.jpg') }}" alt="dessert" class="w-50 h-auto mx-auto" />
-              <div class="card-body px-5">
-                <p class="class-text">청크 초콜릿 쿠키 틴 세트</p>
-                <button type="button" class="btn btn-block btn-danger" onclick="location.href='/info/190'">주문하기</button>
-              </div>
-            </div>
-            <div class="card text-center" style="width:18rem;">
-              <img src="{{ url_for('static', path='/dessert_placeholder.jpg') }}" alt="dessert" class="w-50 h-auto mx-auto" />
-              <div class="card-body px-5">
-                <p class="class-text">미키 마들렌</p>
-                <button type="button" class="btn btn-block btn-danger" onclick="location.href='/info/191'">주문하기</button>
-              </div>
-            </div>
-            <div class="card text-center" style="width:18rem;">
-              <img src="{{ url_for('static', path='/dessert_placeholder.jpg') }}" alt="dessert" class="w-50 h-auto mx-auto" />
-              <div class="card-body px-5">
-                <p class="class-text">리저브 초콜릿 세트</p>
-                <button type="button" class="btn btn-block btn-danger" onclick="location.href='/info/197'">주문하기</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="card-group">
-            <div class="card text-center" style="width:18rem;">
-              <img src="{{ url_for('static', path='/dessert_placeholder.jpg') }}" alt="dessert" class="w-50 h-auto mx-auto" />
-              <div class="card-body px-5">
-                <p class="class-text">미키 마카롱</p>
-                <button type="button" class="btn btn-block btn-danger" onclick="location.href='/info/192'">주문하기</button>
-              </div>
-            </div>
-            <div class="card text-center" style="width:18rem;">
-              <img src="{{ url_for('static', path='/dessert_placeholder.jpg') }}" alt="dessert" class="w-50 h-auto mx-auto" />
-              <div class="card-body px-5">
-                <p class="class-text">비스코티 크래커</p>
-                <button type="button" class="btn btn-block btn-danger" onclick="location.href='/info/193'">주문하기</button>
-              </div>
-            </div>
-            <div class="card text-center" style="width:18rem;">
-              <img src="{{ url_for('static', path='/dessert_placeholder.jpg') }}" alt="dessert" class="w-50 h-auto mx-auto" />
-              <div class="card-body px-5">
-                <p class="class-text">칩 앤 데일 그래놀라 볼</p>
-                <button type="button" class="btn btn-block btn-danger" onclick="location.href='/info/194'">주문하기</button>
-              </div>
-            </div>
-            <div class="card text-center" style="width:18rem;">
-              <img src="{{ url_for('static', path='/dessert_placeholder.jpg') }}" alt="dessert" class="w-50 h-auto mx-auto" />
-              <div class="card-body px-5">
-                <p class="class-text">제주 오름 초콜릿 세트</p>
-                <button type="button" class="btn btn-block btn-danger" onclick="location.href='/info/198'">주문하기</button>
-              </div>
-            </div>
-          </div>
-          
-          <div class="card-group">
-            <div class="card text-center" style="width:18rem;">
-              <img src="{{ url_for('static', path='/dessert_placeholder.jpg') }}" alt="dessert" class="w-50 h-auto mx-auto" />
-              <div class="card-body px-5">
-                <p class="class-text">로고 코인 다크 초콜릿</p>
-                <button type="button" class="btn btn-block btn-danger" onclick="location.href='/info/195'">주문하기</button>
-              </div>
-            </div>
-            <div class="card text-center" style="width:18rem;">
-              <img src="{{ url_for('static', path='/dessert_placeholder.jpg') }}" alt="dessert" class="w-50 h-auto mx-auto" />
-              <div class="card-body px-5">
-                <p class="class-text">로고 코인 밀크 초콜릿</p>
-                <button type="button" class="btn btn-block btn-danger" onclick="location.href='/info/196'">주문하기</button>
-              </div>
-            </div>
-            <div class="card text-center" style="width:18rem;">
-              <img src="{{ url_for('static', path='/dessert_placeholder.jpg') }}" alt="dessert" class="w-50 h-auto mx-auto" />
-              <div class="card-body px-5">
-                <p class="class-text">몽블랑 보늬밤 케이크</p>
-                <button type="button" class="btn btn-block btn-danger" onclick="location.href='/info/155'">주문하기</button>
-              </div>
-            </div>
-            <div class="card text-center" style="width:18rem;">
-              <img src="{{ url_for('static', path='/dessert_placeholder.jpg') }}" alt="dessert" class="w-50 h-auto mx-auto" />
-              <div class="card-body px-5">
-                <p class="class-text">미키 티라미수</p>
-                <button type="button" class="btn btn-block btn-danger" onclick="location.href='/info/156'">주문하기</button>
-              </div>
-            </div>
+            {% endfor %}
           </div>
         </div>
         <!-- 디저트 탭 끝 -->
@@ -444,7 +136,7 @@
               <h5 class="modal-title" id="modal_card">카드 결제</h5>
             </div>
             <div class="modal-body">
-              <img src="{{ url_for('static', path='/ico_card.png') }}" alt="icon_credit" class="mx-auto d-block" />
+              <img src="{{ url_for('static', path='/img/ico_card.png') }}" alt="icon_credit" class="mx-auto d-block" />
               <p style="text-align: center; font-size: 32px;">카드를 투입구에 넣어주세요</p>
             </div>
             <div class="modal-footer">
@@ -463,7 +155,7 @@
               <h5 class="modal-title" id="modal_credit">현금 결제</h5>
             </div>
             <div class="modal-body">
-              <img src="{{ url_for('static', path='/ico_credit.png') }}" alt="icon_credit" class="mx-auto d-block m-5 p-5" />
+              <img src="{{ url_for('static', path='/img/ico_credit.png') }}" alt="icon_credit" class="mx-auto d-block m-5 p-5" />
               <p style="text-align: center; font-size: 32px;">현금을 투입구에 넣어주세요</p>
             </div>
             <div class="modal-footer">
