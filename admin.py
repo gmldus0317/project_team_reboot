@@ -5,6 +5,7 @@ from fastapi import Request
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import RedirectResponse
+from math import ceil
 
 from database import *
 from models import *
@@ -24,29 +25,50 @@ def get_db():
     finally:
         session.close()
 
+def pagination_menu(db: Session, begin: int = 1, limit: int = 20):
+    _dt_info = db.query(Menu).order_by(Menu.menu_id)
+
+    total = _dt_info.count()
+    dt_info = _dt_info.offset(begin).limit(limit).all()
+    return total, dt_info
+
+def pagination_fmenu(db: Session, begin: int = 1, limit: int = 20, categories: list = ["전체"]):
+    _fdt_info = db.query(Menu).filter(Menu.category.in_(categories))
+
+    total = _fdt_info.count()
+    fdt_info = _fdt_info.offset(begin).limit(limit).all()
+
+    return total, fdt_info
+
 @admin.get("/", tags=['admin'])
-async def load_db(request: Request, db: Session = Depends(get_db)):
-    dt_info = db.query(Menu).order_by(Menu.menu_id.desc())
-    if dt_info.count() == 0:
-        dt_info = 0
-    return templates.TemplateResponse("db_test.html", {"request":request, "dt_info":dt_info})
+async def load_db(request: Request, page: int = 1, size: int = 20, db: Session = Depends(get_db)):
+    total, dt_info = pagination_menu(db, begin=(page-1)*size, limit=size)
+    total = ceil(total/size)
+
+    return templates.TemplateResponse("db_test.html", {"request":request, "page":page, "size":size, "total":total, "dt_info":dt_info})
+
+@admin.get("/?page={page}&size={size}", tags=['admin'])
+async def load_db(request: Request, page: int = 1, size: int = 20, db: Session = Depends(get_db)):
+    total, dt_info = pagination_menu(db, begin=(page-1)*size, limit=size)
+    total = ceil(total/size)
+
+    return templates.TemplateResponse("db_test.html", {"request":request, "page":page, "size":size, "total":total, "dt_info":dt_info})
 
 @admin.post("/", tags=['admin'])
-async def filter_db(request: Request, db: Session = Depends(get_db)):
+async def filter_db(request: Request, page: int = 1, size: int = 20, db: Session = Depends(get_db)):
     form_data = await request.form()
     categories = form_data.getlist("category")
     
-    dt_info = db.query(Menu).order_by(Menu.menu_id.desc())
-    
     if categories:
-        dt_info = dt_info.filter(Menu.category.in_(categories))
+        total, fdt_info = pagination_fmenu(db, begin=(page-1)*size, limit=size, categories=categories)
+        total = ceil(total/size)
     
     if "전체" in categories or not categories:
-        dt_info = db.query(Menu).order_by(Menu.menu_id.desc())
+        total, fdt_info = pagination_menu(db, begin=(page-1)*size, limit=size)
+        total = ceil(total/size)
     
-    fdt_info = dt_info.all()
 
-    return templates.TemplateResponse("db_test.html", {"request":request, "dt_info":fdt_info})
+    return templates.TemplateResponse("db_test.html", {"request":request, "page":page, "size":size, "total":total, "dt_info":fdt_info})
 
 @admin.get("/edit/{menu_id}", tags=['admin'])
 async def edit_menu(request: Request, menu_id: int, db: Session = Depends(get_db)):

@@ -55,9 +55,9 @@
                       <tr>
                         <td>{{ info.menu_id }}</td>
                         {% if (info.menu_nm|length) >= 23 %}
-                        <td><a href="/admin/edit/{{ info.menu_id }}" style="font-size: 14px;">{{ info.menu_nm }}</a></td>
+                        <td><a href="/admin/edit/{{ info.menu_id }}" class="text-reset" style="font-size: 14px;">{{ info.menu_nm }}</a></td>
                         {% else %}
-                        <td><a href="/admin/edit/{{ info.menu_id }}">{{ info.menu_nm }}</a></td>
+                        <td><a href="/admin/edit/{{ info.menu_id }}" class="text-reset">{{ info.menu_nm }}</a></td>
                         {% endif %}
                         <td>{{ info.kcal_g }}</td>
                         <td>{{ info.sacch_g }}</td>
@@ -71,6 +71,19 @@
                 </table>
             </div>
         {% endif %}
+
+        <footer>
+            <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-center">
+                    {% for page_num in range(1, total+1) %}
+                    <li class="page-item {% if page_num == page %}active{% endif %}">
+                        <a href="{{ url_for('load_db', page=page_num, size=size) }}" class="page-link">{{ page_num }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </nav>
+        </footer>
+
     </div>
     <script src="{{ url_for('static', path='/js/menu.js') }}"></script>
     <script src="{{ url_for('static', path='/js/jquery-3.5.1.slim.min.js') }}"></script>
