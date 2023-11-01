@@ -29,8 +29,24 @@ async def load_db(request: Request, db: Session = Depends(get_db)):
     dt_info = db.query(Menu).order_by(Menu.menu_id.desc())
     if dt_info.count() == 0:
         dt_info = 0
-
     return templates.TemplateResponse("db_test.html", {"request":request, "dt_info":dt_info})
+
+@admin.post("/", tags=['admin'])
+async def filter_db(request: Request, db: Session = Depends(get_db)):
+    form_data = await request.form()
+    categories = form_data.getlist("category")
+    
+    dt_info = db.query(Menu).order_by(Menu.menu_id.desc())
+    
+    if categories:
+        dt_info = dt_info.filter(Menu.category.in_(categories))
+    
+    if "전체" in categories or not categories:
+        dt_info = db.query(Menu).order_by(Menu.menu_id.desc())
+    
+    fdt_info = dt_info.all()
+
+    return templates.TemplateResponse("db_test.html", {"request":request, "dt_info":fdt_info})
 
 @admin.get("/edit/{menu_id}", tags=['admin'])
 async def edit_menu(request: Request, menu_id: int, db: Session = Depends(get_db)):
@@ -40,6 +56,7 @@ async def edit_menu(request: Request, menu_id: int, db: Session = Depends(get_db
 @admin.post("/edit/{menu_id}", tags=['admin'])
 async def edit_menu(request: Request, menu_id: int, menu_nm: str = Form(...), kcal_g: int = Form(...), sacch_g: int = Form(...), protein_g: float = Form(...), sodium_mg: float = Form(...), sat_fat_g: int = Form(...), caffeine_mg: int = Form(...), category: str = Form(...), db: Session = Depends(get_db)):
     menu = db.query(Menu).filter(Menu.menu_id == menu_id).first()
+
     menu.menu_nm = menu_nm
     menu.kcal_g = kcal_g
     menu.sacch_g = sacch_g
@@ -48,6 +65,7 @@ async def edit_menu(request: Request, menu_id: int, menu_nm: str = Form(...), kc
     menu.sat_fat_g = sat_fat_g
     menu.caffeine_mg = caffeine_mg
     menu.category = category
+
     db.commit()
     return RedirectResponse(url=admin.url_path_for("load_db"), status_code=status.HTTP_303_SEE_OTHER)
     
@@ -66,6 +84,7 @@ async def add_menu(request: Request):
 @admin.post("/add", tags=['admin'])
 async def add_menu(menu_nm: str = Form(...), kcal_g: int = Form(...), sacch_g: int = Form(...), protein_g: float = Form(...), sodium_mg: float = Form(...), sat_fat_g: int = Form(...), caffeine_mg: int = Form(...), category: str = Form(...), db: Session = Depends(get_db)):
     menu = Menu()
+    
     menu.menu_nm = menu_nm
     menu.kcal_g = kcal_g
     menu.sacch_g = sacch_g

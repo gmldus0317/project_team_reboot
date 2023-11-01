@@ -14,9 +14,32 @@
         {% else %}
             <div class="d-flex flex-column justify-content-center">
                 <div class="flex-row m-3">
-                    <button class="btn btn-info" onclick="location.href='/admin/add'">메뉴 추가</button>
+                    <button class="btn btn-outline-info mb-2" onclick="location.href='/admin/add'">메뉴 추가</button>
+                    <form id="filter-form" action="/admin" method="post" class="p-3" style="background-color: #454d55; color: white;">
+                        <div class="form-check form-check-inline">
+                            <input type="checkbox" class="form-check-input" value="전체" id="all" name="category" onclick="checkAll(this)" checked />
+                            <label for="all" class="form-check-label">전체</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input type="checkbox" class="form-check-input" value="커피" id="coffee" name="category" onclick="uncheckCategoryAll(this)" />
+                            <label for="coffee" class="form-check-label">커피</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input type="checkbox" class="form-check-input" value="티" id="tea" name="category" onclick="uncheckCategoryAll(this)" />
+                            <label for="tea" class="form-check-label">차</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input type="checkbox" class="form-check-input" value="음료" id="drink" name="category" onclick="uncheckCategoryAll(this)" />
+                            <label for="drink" class="form-check-label">음료</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input type="checkbox" class="form-check-input" value="디저트" id="dessert" name="category" onclick="uncheckCategoryAll(this)" />
+                            <label for="dessert" class="form-check-label">디저트</label>
+                        </div>
+                        <button class="btn btn-outline-light ml-3" type="submit">분류 적용</button>
+                    </form>
                 </div>
-                <table class="table table-dark">
+                <table id="menu-table" class="table table-dark">
                     <tr>
                         <th scope="row">ID</th>
                         <th scope="row">메뉴명</th>
@@ -45,6 +68,7 @@
             </div>
         {% endif %}
     </div>
+    <script src="{{ url_for('static', path='/js/menu.js') }}"></script>
     <script src="{{ url_for('static', path='/js/jquery-3.5.1.slim.min.js') }}"></script>
     <script src="{{ url_for('static', path='/js/bootstrap.bundle.min.js') }}"></script>
 </body>
