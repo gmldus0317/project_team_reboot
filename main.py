@@ -34,16 +34,16 @@ async def home(request: Request):
 
 @app.get("/menu", response_model=List[Cart_list])
 async def menu(request: Request, db: Session = Depends(get_db)):
-    dt_coffee = db.query(Menu).filter(Menu.category == "커피").order_by(Menu.menu_id.desc())
-    dt_tea = db.query(Menu).filter(Menu.category == "티").order_by(Menu.menu_id.desc())
-    dt_drink = db.query(Menu).filter(Menu.category == "음료").order_by(Menu.menu_id.desc())
-    dt_dessert = db.query(Menu).filter(Menu.category == "디저트").order_by(Menu.menu_id.desc())
+    dt_coffee = db.query(Menu).filter(Menu.category == "커피").order_by(Menu.menu_id)
+    dt_tea = db.query(Menu).filter(Menu.category == "티").order_by(Menu.menu_id)
+    dt_drink = db.query(Menu).filter(Menu.category == "음료").order_by(Menu.menu_id)
+    dt_dessert = db.query(Menu).filter(Menu.category == "디저트").order_by(Menu.menu_id)
     return templates.TemplateResponse("menu.html", {"request":request, "dt_coffee": dt_coffee, "dt_tea": dt_tea, "dt_drink": dt_drink, "dt_dessert": dt_dessert, "cart_list": cart})
 
 @app.get("/info/{menu_id}")
 async def notice(request: Request, menu_id: int, db: Session = Depends(get_db)):
     crn_info = db.query(Menu).filter(Menu.menu_id == menu_id).first() # current_information
-    dt_info = db.query(Menu).order_by(Menu.menu_id.desc())
+    dt_info = db.query(Menu).order_by(Menu.menu_id)
     return templates.TemplateResponse("notice.html", {"request": request, "dt_info": dt_info, "crn_info": crn_info})
 
 @app.get("/cart/add/{menu_nm}")
