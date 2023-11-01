@@ -54,7 +54,11 @@
                       {% for info in dt_info %}
                       <tr>
                         <td>{{ info.menu_id }}</td>
+                        {% if (info.menu_nm|length) >= 23 %}
+                        <td><a href="/admin/edit/{{ info.menu_id }}" style="font-size: 14px;">{{ info.menu_nm }}</a></td>
+                        {% else %}
                         <td><a href="/admin/edit/{{ info.menu_id }}">{{ info.menu_nm }}</a></td>
+                        {% endif %}
                         <td>{{ info.kcal_g }}</td>
                         <td>{{ info.sacch_g }}</td>
                         <td>{{ info.protein_g }}</td>
