@@ -40,7 +40,11 @@
           <div class="row row-cols-md-4 px-5">
             {% for coffee in dt_coffee %}
               <div class="card text-center" style="width: 18rem;">
-                <img src="{{ url_for('static', path='/img/coffee_placeholder_1.jpg') }}" alt="image_coffee" class="w-75 h-auto m-auto" />
+                {% if (coffee.menu_id|string) in img_nm_list %}
+                <img src="{{ url_for('static', path=('img/' ~ coffee.menu_id ~ '.jpg')) }}" alt="{{ coffee.menu_nm }}" class="w-75 h-auto m-auto" />
+                {% else %}
+                  <img src="{{ url_for('static', path='img/coffee_placeholder_1.jpg') }}" alt="image_coffee" class="w-75 h-auto m-auto" />
+                {% endif %}
                 <div class="card-body px-5">
                   {% if (coffee.menu_nm|length) >= 13 %}
                     <p class="card-text" style="font-size: 14px;">{{ coffee.menu_nm }}</p>
@@ -59,17 +63,21 @@
         <div class="tab-pane fade" id="pills-tea" role="tabpanel" aria-labelledby="pills-tea-tab">
           <div class="row row-cols-md-4 px-5">
             {% for tea in dt_tea %}
-            <div class="card text-center" style="width: 18rem;">
-              <img src="{{ url_for('static', path='/img/tea_placeholder.jpg') }}" alt="image_tea" class="w-75 h-auto mx-auto" />
-              <div class="card-body px-5">
-                {% if (tea.menu_nm|length) >= 13 %}
-                  <p class="card-text" style="font-size: 14px;">{{ tea.menu_nm }}</p>
+              <div class="card text-center" style="width: 18rem;">
+                {% if (tea.menu_id|string) in img_nm_list %}
+                  <img src="{{ url_for('static', path=('img/' ~ tea.menu_id ~ '.jpg')) }}" alt="{{ tea.menu_nm }}" class="w-75 h-auto m-auto" />
                 {% else %}
-                  <p class="card-text">{{ tea.menu_nm }}</p>
+                  <img src="{{ url_for('static', path='img/tea_placeholder.jpg') }}" alt="image_tea" class="w-75 h-auto m-auto" />
                 {% endif %}
-                <a href="/info/{{ tea.menu_id }}" class="btn btn-block btn-danger">주문하기</a>
+                <div class="card-body px-5">
+                  {% if (tea.menu_nm|length) >= 13 %}
+                    <p class="card-text" style="font-size: 14px;">{{ tea.menu_nm }}</p>
+                  {% else %}
+                    <p class="card-text">{{ tea.menu_nm }}</p>
+                  {% endif %}
+                  <a href="/info/{{ tea.menu_id }}" class="btn btn-block btn-danger">주문하기</a>
+                </div>
               </div>
-            </div>
             {% endfor %}
           </div>
         </div>
@@ -79,17 +87,21 @@
         <div class="tab-pane fade" id="pills-drink" role="tabpanel" aria-labelledby="pills-tea-tab">
           <div class="row row-cols-md-4 px-5">
             {% for drink in dt_drink %}
-            <div class="card text-center" style="width: 18rem;">
-              <img src="{{ url_for('static', path='/img/drink_placeholder.jpg') }}" alt="image_drink" class="w-75 h-auto mx-auto" />
-              <div class="card-body px-5">
-                {% if (drink.menu_nm|length) >= 13 %}
-                  <p class="card-text" style="font-size: 14px;">{{ drink.menu_nm }}</p>
-                {% else %}
-                  <p class="card-text">{{ drink.menu_nm }}</p>
-                {% endif %}
-                <a href="/info/{{ drink.menu_id }}" class="btn btn-block btn-danger">주문하기</a>
+              <div class="card text-center" style="width: 18rem;">
+                  {% if (drink.menu_id|string) in img_nm_list %}
+                    <img src="{{ url_for('static', path=('img/' ~ drink.menu_id ~ '.jpg')) }}" alt="{{ drink.menu_nm }}" class="w-75 h-auto m-auto" />
+                  {% else %}
+                    <img src="{{ url_for('static', path='img/drink_placeholder.jpg') }}" alt="image_drink" class="w-75 h-auto m-auto" />
+                  {% endif %}
+                <div class="card-body px-5">
+                  {% if (drink.menu_nm|length) >= 13 %}
+                    <p class="card-text" style="font-size: 14px;">{{ drink.menu_nm }}</p>
+                  {% else %}
+                    <p class="card-text">{{ drink.menu_nm }}</p>
+                  {% endif %}
+                  <a href="/info/{{ drink.menu_id }}" class="btn btn-block btn-danger">주문하기</a>
+                </div>
               </div>
-            </div>
             {% endfor %}
           </div>
         </div>
@@ -99,17 +111,21 @@
         <div class="tab-pane fade" id="pills-dessert" role="tabpanel" aria-labelledby="pills-dessert-tab">
           <div class="row row-cols-md-4 px-5">
             {% for dessert in dt_dessert %}
-            <div class="card text-center" style="width: 18rem;">
-              <img src="{{ url_for('static', path='/img/dessert_placeholder.jpg') }}" alt="dessert" class="w-75 h-auto mx-auto" />
-              <div class="card-body px-5">
-                {% if (dessert.menu_nm|length) >= 13 %}
-                  <p class="card-text" style="font-size: 14px;">{{ dessert.menu_nm }}</p>
-                {% else %}
-                  <p class="card-text">{{ dessert.menu_nm }}</p>
-                {% endif %}
-                <a href="/info/{{ dessert.menu_id }}" class="btn btn-block btn-danger">주문하기</a>
+              <div class="card text-center" style="width: 18rem;">
+                  {% if (dessert.menu_id|string) in img_nm_list %}
+                    <img src="{{ url_for('static', path=('img/' ~ dessert.menu_id ~ '.jpg')) }}" alt="{{ dessert.menu_nm }}" class="w-75 h-auto m-auto" />
+                  {% else %}
+                    <img src="{{ url_for('static', path='img/dessert_placeholder.jpg') }}" alt="image_dessert" class="w-75 h-auto m-auto" />
+                  {% endif %}
+                <div class="card-body px-5">
+                  {% if (dessert.menu_nm|length) >= 13 %}
+                    <p class="card-text" style="font-size: 14px;">{{ dessert.menu_nm }}</p>
+                  {% else %}
+                    <p class="card-text">{{ dessert.menu_nm }}</p>
+                  {% endif %}
+                  <a href="/info/{{ dessert.menu_id }}" class="btn btn-block btn-danger">주문하기</a>
+                </div>
               </div>
-            </div>
             {% endfor %}
           </div>
         </div>
