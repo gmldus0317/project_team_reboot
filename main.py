@@ -12,10 +12,12 @@ from models import *
 
 from sqlalchemy.orm import Session
 
+import os
+
 templates = Jinja2Templates(directory="templates")
 
 app = FastAPI()
-app.mount("/static", StaticFiles(directory="statics"), name="static")
+app.mount("/static", StaticFiles(directory="static"), name="static")
 app.include_router(admin)
 engine = engineconn()
 
@@ -34,11 +36,21 @@ async def home(request: Request):
 
 @app.get("/menu", response_model=List[Cart_list])
 async def menu(request: Request, db: Session = Depends(get_db)):
+
+    path="./static/img/"
+    img_list = os.listdir(path)
+
+    img_nm_list = []
+
+    for i in img_list:
+        img_nm_list.append(i.split(".")[0])
+
     dt_coffee = db.query(Menu).filter(Menu.category == "커피").order_by(Menu.menu_id)
     dt_tea = db.query(Menu).filter(Menu.category == "티").order_by(Menu.menu_id)
     dt_drink = db.query(Menu).filter(Menu.category == "음료").order_by(Menu.menu_id)
     dt_dessert = db.query(Menu).filter(Menu.category == "디저트").order_by(Menu.menu_id)
-    return templates.TemplateResponse("menu.html", {"request":request, "dt_coffee": dt_coffee, "dt_tea": dt_tea, "dt_drink": dt_drink, "dt_dessert": dt_dessert, "cart_list": cart})
+
+    return templates.TemplateResponse("menu.html", {"request":request, "dt_coffee": dt_coffee, "dt_tea": dt_tea, "dt_drink": dt_drink, "dt_dessert": dt_dessert, "cart_list": cart, "img_nm_list": img_nm_list})
 
 @app.get("/info/{menu_id}")
 async def notice(request: Request, menu_id: int, db: Session = Depends(get_db)):
