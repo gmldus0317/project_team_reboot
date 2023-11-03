@@ -15,7 +15,7 @@ from sqlalchemy.orm import Session
 templates = Jinja2Templates(directory="templates")
 
 admin = APIRouter(prefix='/admin')
-admin.mount("/static", StaticFiles(directory="statics"), name="static")
+admin.mount("/static", StaticFiles(directory="static"), name="static")
 engine = engineconn()
 
 def get_db():
