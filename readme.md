@@ -14,5 +14,14 @@ mysql 8.0 <br>
 
 what's disappinting - 아쉬운 점
 
+The menu page displays many menus on one screen, causing the inconvenience of having to scroll down. <br>
+So, it would have been better if pagination was done.<br><br>
+
 메뉴 페이지에는 많은 메뉴를 한 화면에 나타내고 있어 스크롤을 내려야하는 불편함이 있다. <br>
 그래서 페이지네이션 처리를 했다면 조금 좋았을듯 하다 <br><br>
+
+It is unfortunate that there is no bulk deletion function on the administrator page.<br>
+I was able to implement this to some extent using checkbox.<br><br>
+
+관리자페이지에서 일괄삭제기능 없는것이 아쉽다.
+checkbox를 통해 어느정도 구현할수 있었다.
